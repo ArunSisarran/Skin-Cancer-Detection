@@ -1,4 +1,3 @@
-# transforms.py
 from torchvision import transforms
 
 
