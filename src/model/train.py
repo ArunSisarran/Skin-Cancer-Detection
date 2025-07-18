@@ -7,9 +7,9 @@ from sklearn.utils.class_weight import compute_class_weight
 import pandas as pd
 import numpy as np
 
-from dataset import SkinCancerDataset
-from modelCNN import SkinCancerCNN
-from transforms import get_transforms
+from model.dataset import SkinCancerDataset
+from model.modelCNN import SkinCancerCNN
+from model.transforms import get_transforms
 
 
 def setup_data(df, img_dirs, batch_size=32):
