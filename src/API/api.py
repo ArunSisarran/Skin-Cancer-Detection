@@ -34,7 +34,6 @@ model_loaded = False
 
 @app.on_event("startup")
 async def startup_event():
-    """Load model on startup"""
     global model, device, model_loaded
     try:
         model, device = load_model('best.pth')
