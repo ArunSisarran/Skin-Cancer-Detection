@@ -1,41 +1,34 @@
 import React from 'react';
 import { Camera, Home, FileText } from 'lucide-react';
+import './Header.css';
 
 const Header = ({ activeTab, setActiveTab }) => {
   return (
-    <header className="bg-white shadow-sm border-b border-gray-200">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
-          <div className="flex items-center space-x-4">
-            <div className="flex items-center space-x-2">
-              <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
-                <Camera className="w-5 h-5 text-white" />
+    <header className="header">
+      <div className="header-container">
+        <div className="header-content">
+          <div className="header-left">
+            <div className="logo-container">
+              <div className="logo-icon">
+                <Camera />
               </div>
-              <h1 className="text-xl font-bold text-gray-900">SkinGuard AI</h1>
+              <h1 className="logo-text">SkinGuard AI</h1>
             </div>
           </div>
           
-          <nav className="flex space-x-8">
+          <nav className="nav">
             <button
               onClick={() => setActiveTab('home')}
-              className={`flex items-center space-x-2 px-3 py-2 rounded-md text-sm font-medium transition-colors ${
-                activeTab === 'home' 
-                  ? 'text-blue-600 bg-blue-50' 
-                  : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
-              }`}
+              className={`nav-button ${activeTab === 'home' ? 'active' : ''}`}
             >
-              <Home className="w-4 h-4" />
+              <Home className="nav-icon" />
               <span>Home</span>
             </button>
             <button
               onClick={() => setActiveTab('about')}
-              className={`flex items-center space-x-2 px-3 py-2 rounded-md text-sm font-medium transition-colors ${
-                activeTab === 'about' 
-                  ? 'text-blue-600 bg-blue-50' 
-                  : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
-              }`}
+              className={`nav-button ${activeTab === 'about' ? 'active' : ''}`}
             >
-              <FileText className="w-4 h-4" />
+              <FileText className="nav-icon" />
               <span>About</span>
             </button>
           </nav>
