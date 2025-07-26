@@ -244,7 +244,6 @@ const HomePage = () => {
           <div className="guidelines-column">
             <p className="guideline-item">• Take photos straight-on, not at an angle</p>
             <p className="guideline-item">• Use a high-resolution camera</p>
-            <p className="guideline-item">• Include a reference object for scale if possible</p>
           </div>
         </div>
       </div>

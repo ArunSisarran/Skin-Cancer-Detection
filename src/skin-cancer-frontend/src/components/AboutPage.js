@@ -22,13 +22,13 @@ const AboutPage = () => {
         
         <div className="mission-content">
           <p>
-            [Your mission statement will go here - replace this placeholder text with your personal mission and intentions for building this project.]
+            As a fourth-year Computer Science student, I’ve developed a strong interest in machine learning and its real-world applications—particularly in the field of computer vision. While my coursework provided a solid theoretical foundation, I wanted to challenge myself with a hands-on project that would push me to apply those concepts in a practical and impactful way.
           </p>
           <p>
-            [You can describe your motivation, the problem you're trying to solve, and the impact you hope to achieve.]
+            This website was built as a personal learning experience to deepen my understanding of convolutional neural networks (CNNs) and the process of fine-tuning pre-trained models. It also served as an opportunity to explore the full pipeline of developing, training, and deploying a machine learning model in a real-world context.
           </p>
           <p>
-            [Feel free to include your background, why this project matters to you, and your vision for the future of AI-assisted healthcare.]
+            Beyond the technical goals, this project was driven by a personal motivation: helping people who often delay going to the doctor, even when they know they shouldn’t. Whether due to busy schedules, fear, or simply putting it off, many let their health slide until it becomes a serious issue. I wanted to create something that could act as a small but meaningful step—a tool that encourages users to reflect on their well-being and consider seeking professional medical advice sooner rather than later.
           </p>
         </div>
       </div>
