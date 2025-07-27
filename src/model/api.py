@@ -8,8 +8,8 @@ import base64
 import logging
 from datetime import datetime
 
-from model.transforms import get_transforms
-from model.loadModel import load_model
+from transforms import get_transforms
+from loadModel import load_model
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
