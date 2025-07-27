@@ -3,10 +3,14 @@ from PIL import Image
 from modelCNN import SkinCancerCNN
 from transforms import get_transforms
 
-def load_model(model_path='best.pth'):
+def load_model(model_path='best_model_focal.pth'):
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     model = SkinCancerCNN().to(device)
-    model.load_state_dict(torch.load(model_path, map_location=device))
+    checkpoint = torch.load(model_path, map_location=device, weights_only=False)
+    if isinstance(checkpoint, dict) and 'model_state_dict' in checkpoint:
+        model.load_state_dict(checkpoint['model_state_dict'])
+    else:
+        model.load_state_dict(checkpoint)
     model.eval()
     return model, device
 
@@ -27,5 +31,5 @@ def predict_image(model, device, image_path):
     return result, confidence_score
 
 if __name__ == "__main__":
-    model, device = load_model('best.pth')
+    model, device = load_model('best_model_focal.pth')
     print("loaded succ")

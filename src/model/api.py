@@ -36,12 +36,20 @@ model_loaded = False
 async def startup_event():
     global model, device, model_loaded
     try:
-        model, device = load_model('best.pth')
+        # Use the updated load_model function
+        model, device = load_model('best_model_focal.pth')
         model_loaded = True
-        logger.info("Model loaded successfully")
+        logger.info("Improved focal loss model loaded successfully")
     except Exception as e:
         logger.error(f"Failed to load model: {str(e)}")
-        model_loaded = False
+        # Try fallback to old model
+        try:
+            model, device = load_model('best.pth')
+            model_loaded = True
+            logger.info("Fallback to original model successful")
+        except Exception as e2:
+            logger.error(f"Failed to load fallback model: {str(e2)}")
+            model_loaded = False
 
 @app.get("/")
 async def root():
