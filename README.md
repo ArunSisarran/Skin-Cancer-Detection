@@ -18,13 +18,13 @@ An AI-powered web application for skin cancer detection using deep learning. Ski
 ## 🏗️ Architecture
 
 ```
-┌─────────────────-┐    ┌────────────────--─┐    ┌─────────────────---┐
+┌──────────────────┐    ┌───────────────────┐    ┌────────────────────┐
 │   React Frontend │────│  FastAPI Backend  │────│  PyTorch Model     │
 │                  │    │                   │    │                    │
 │ • Image Upload   │    │ • Image Processing│    │ • EfficientNet-B0  │
 │ • Results Display│    │ • Prediction API  │    │ • Transfer Learning│
 │ • Grad-CAM Viz   │    │ • Grad-CAM Gen    │    │ • Binary Classifier│
-└────────────────-─┘    └─────────────────--┘    └─────────────────---┘
+└──────────────────┘    └───────────────────┘    └────────────────────┘
 ```
 
 ## 📊 Model Performance
