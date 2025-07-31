@@ -41,7 +41,7 @@ An AI-powered web application for skin cancer detection using deep learning. Ski
 
 ## 🛠️ Tech Stack
 
-**Backend:**
+**Backend:** 
 - PyTorch & Torchvision for deep learning
 - FastAPI for REST API
 - PIL for image processing
