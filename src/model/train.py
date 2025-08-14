@@ -258,7 +258,9 @@ def main():
     
     img_dirs = [
     './data/HAM10000_images_part_1/',
-    './data/HAM10000_images_part_2/', 
+    './data/HAM10000_images_part_2/',
+    './data/ham10000_images_part_1',
+    './data/ham10000_images_part_2',
     './data/ISIC_2019_Training_Input/',
     './data/train/',  # ISIC 2020 images
     ]

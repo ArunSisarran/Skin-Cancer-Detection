@@ -14,25 +14,25 @@ class CustomMelanomaDatasetMerger:
     def __init__(self, data_dir="./data"):
         self.data_dir = Path(data_dir)
         
-        # Your specific file structure
+        
         self.dataset_configs = {
             'ham10000': {
                 'metadata_file': 'HAM10000_metadata.csv',
-                'image_dirs': ['HAM10000_images_part_1', 'HAM10000_images_part_2'],
+                'image_dirs': ['HAM10000_images_part_1', 'HAM10000_images_part_2', 'ham10000_images_part_1', 'ham10000_images_part_2'],
                 'image_id_col': 'image_id',
                 'diagnosis_col': 'dx',
                 'melanoma_label': 'mel'
             },
             'isic_2019': {
-                'metadata_file': 'ISIC_2019_Training_Metadatah.csv',  # Note: your typo "Metadatah"
-                'image_dirs': ['ISIC_2019_Training_Input'],
-                'image_id_col': 'image',
-                'diagnosis_col': 'melanoma',  # We'll need to check this
-                'melanoma_label': 1
+            'metadata_file': 'ISIC_2019_Training_GroundTruth.csv',  
+            'image_dirs': ['ISIC_2019_Training_Input'],
+            'image_id_col': 'image',
+            'diagnosis_col': 'MEL',  
+            'melanoma_label': 1.0  
             },
             'isic_2020': {
                 'metadata_file': 'ISIC_2020_Training_GroundTruth_v2.csv',
-                'image_dirs': ['train'],  # Assuming this is where ISIC 2020 images are
+                'image_dirs': ['train'],  
                 'image_id_col': 'image_name',
                 'diagnosis_col': 'target',
                 'melanoma_label': 1
