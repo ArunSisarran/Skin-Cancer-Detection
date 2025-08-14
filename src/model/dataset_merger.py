@@ -165,23 +165,19 @@ class CustomMelanomaDatasetMerger:
         """Load ISIC 2019 data"""
         print("\n📊 Loading ISIC 2019...")
         
-        metadata_path = self.data_dir / 'ISIC_2019_Training_Metadatah.csv'
+        metadata_path = self.data_dir / 'ISIC_2019_Training_GroundTruth.csv'
         if not metadata_path.exists():
+            print(f"❌ ISIC 2019 ground truth not found: {metadata_path}")
             return None
         
         df = pd.read_csv(metadata_path)
         
-        # Explore and find the right melanoma column
-        melanoma_col = self.fix_isic_2019_metadata()
-        if melanoma_col is None:
-            return None
-        
         # Standardize
         df_std = pd.DataFrame()
         df_std['image_id'] = df['image']
-        df_std['binary_target'] = df[melanoma_col].astype(int)
+        df_std['binary_target'] = df['MEL'].astype(int)
         df_std['dataset_source'] = 'isic_2019'
-        df_std['original_diagnosis'] = df[melanoma_col]
+        df_std['original_diagnosis'] = df['MEL']
         
         # Find image paths
         df_std['image_path'] = self._find_image_paths(
