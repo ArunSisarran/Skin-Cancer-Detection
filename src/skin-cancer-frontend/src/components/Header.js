@@ -1,5 +1,6 @@
 import React from 'react';
-import { Camera, Home, FileText } from 'lucide-react';
+import { Home, FileText } from 'lucide-react';
+import LogoIcon from './LogoIcon'; // Import the new LogoIcon
 import './Header.css';
 
 const Header = ({ activeTab, setActiveTab }) => {
@@ -10,7 +11,7 @@ const Header = ({ activeTab, setActiveTab }) => {
           <div className="header-left">
             <div className="logo-container">
               <div className="logo-icon">
-                <Camera />
+                <LogoIcon size={32} />
               </div>
               <h1 className="logo-text">SkinGuard AI</h1>
             </div>
