@@ -75,7 +75,7 @@ const AboutPage = () => {
             <div className="step-content">
               <h3>International Clinical Datasets</h3>
               <p>
-                Trained on HAM10000 (Human Against Machine) and ISIC (International Skin Imaging Collaboration) datasets, representing over 20,000 professional dermatoscopic images from multiple international medical institutions.
+                Trained on HAM10000 (Human Against Machine) and ISIC (International Skin Imaging Collaboration) datasets, representing over 60,000 professional dermatoscopic images from multiple international medical institutions.
               </p>
             </div>
           </div>
