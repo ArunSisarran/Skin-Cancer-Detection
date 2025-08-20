@@ -9,6 +9,8 @@ const HomePage = () => {
   const [error, setError] = useState(null);
   const [dragActive, setDragActive] = useState(false);
 
+  const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:8000'
+
   const handleDrag = (e) => {
     e.preventDefault();
     e.stopPropagation();
@@ -93,7 +95,7 @@ const HomePage = () => {
     formData.append('file', selectedFile);
 
     try {
-      const response = await fetch('http://localhost:8000/predict', {
+      const response = await fetch(`${API_URL}/predict`, {
         method: 'POST',
         body: formData,
       });
@@ -105,7 +107,8 @@ const HomePage = () => {
       const result = await response.json();
       setPrediction(result);
     } catch (err) {
-      setError(err.message || 'Analysis failed. Please check image quality and try again.');
+      console.error('API Error:', err);
+      setError(err.message || 'Something went wrong. Please try again.');
     } finally {
       setLoading(false);
     }
@@ -223,6 +226,20 @@ const HomePage = () => {
                   {prediction.prediction}
                 </div>
               </div>
+
+              {prediction.demo_mode && (
+                <div className="demo-notice">
+                  <Info className="demo-icon" />
+                  <span>Demo Mode - Using sample prediction</span>
+                </div>
+              )}
+
+              {prediction.demo_mode && (
+                <div className="demo-notice">
+                  <Info className="demo-icon" />
+                  <span>Demo Mode - Using sample prediction</span>
+                </div>
+              )}
 
               <div className="confidence-section">
                 <div className="confidence-header">
