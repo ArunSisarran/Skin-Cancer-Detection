@@ -12,7 +12,7 @@ def load_model(model_path='best_model_focal.pth'):
     try:
         model = SkinCancerCNN(pretrained=False).to(device)
         
-        checkpoint = torch.load(model_path, map_location=device, weights_only=True)
+        checkpoint = torch.load(model_path, map_location=device, weights_only=False)
         
         if isinstance(checkpoint, dict) and 'model_state_dict' in checkpoint:
             model.load_state_dict(checkpoint['model_state_dict'])
@@ -27,22 +27,7 @@ def load_model(model_path='best_model_focal.pth'):
         
     except Exception as e:
         logger.error(f"Error loading model: {str(e)}")
-        try:
-            checkpoint = torch.load(model_path, map_location=device, weights_only=False)
-            model = SkinCancerCNN(pretrained=False).to(device)
-            
-            if isinstance(checkpoint, dict) and 'model_state_dict' in checkpoint:
-                model.load_state_dict(checkpoint['model_state_dict'])
-            else:
-                model.load_state_dict(checkpoint)
-                
-            model.eval()
-            logger.info(f"Model loaded successfully on {device} (fallback method)")
-            return model, device
-            
-        except Exception as e2:
-            logger.error(f"Fallback loading also failed: {str(e2)}")
-            raise e2
+        raise e
 
 def predict_image(model, device, image_path):
     transform = get_transforms('val')
