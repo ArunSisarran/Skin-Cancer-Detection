@@ -9,6 +9,8 @@ const HomePage = () => {
   const [error, setError] = useState(null);
   const [dragActive, setDragActive] = useState(false);
 
+  const API_URL = process.env.REACT_APP_API_URL
+
   const handleDrag = (e) => {
     e.preventDefault();
     e.stopPropagation();
