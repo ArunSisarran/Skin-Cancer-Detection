@@ -2,17 +2,47 @@ import torch
 from PIL import Image
 from modelCNN import SkinCancerCNN
 from transforms import get_transforms
+import logging
+
+logger = logging.getLogger(__name__)
 
 def load_model(model_path='best_model_focal.pth'):
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-    model = SkinCancerCNN().to(device)
-    checkpoint = torch.load(model_path, map_location=device, weights_only=False)
-    if isinstance(checkpoint, dict) and 'model_state_dict' in checkpoint:
-        model.load_state_dict(checkpoint['model_state_dict'])
-    else:
-        model.load_state_dict(checkpoint)
-    model.eval()
-    return model, device
+    
+    try:
+        model = SkinCancerCNN(pretrained=False).to(device)
+        
+        checkpoint = torch.load(model_path, map_location=device, weights_only=True)
+        
+        if isinstance(checkpoint, dict) and 'model_state_dict' in checkpoint:
+            model.load_state_dict(checkpoint['model_state_dict'])
+            logger.info("Loaded model from checkpoint dict")
+        else:
+            model.load_state_dict(checkpoint)
+            logger.info("Loaded model from state dict")
+            
+        model.eval()
+        logger.info(f"Model loaded successfully on {device}")
+        return model, device
+        
+    except Exception as e:
+        logger.error(f"Error loading model: {str(e)}")
+        try:
+            checkpoint = torch.load(model_path, map_location=device, weights_only=False)
+            model = SkinCancerCNN(pretrained=False).to(device)
+            
+            if isinstance(checkpoint, dict) and 'model_state_dict' in checkpoint:
+                model.load_state_dict(checkpoint['model_state_dict'])
+            else:
+                model.load_state_dict(checkpoint)
+                
+            model.eval()
+            logger.info(f"Model loaded successfully on {device} (fallback method)")
+            return model, device
+            
+        except Exception as e2:
+            logger.error(f"Fallback loading also failed: {str(e2)}")
+            raise e2
 
 def predict_image(model, device, image_path):
     transform = get_transforms('val')
@@ -32,4 +62,4 @@ def predict_image(model, device, image_path):
 
 if __name__ == "__main__":
     model, device = load_model('best_model_focal.pth')
-    print("loaded succ")
+    print("Model loaded successfully")
