@@ -7,6 +7,12 @@ A clinical-grade AI tool for dermatoscopic melanoma analysis, designed exclusive
 ![Python](https://img.shields.io/badge/Python-3.8+-green)
 ![PyTorch](https://img.shields.io/badge/PyTorch-Latest-orange)
 
+## 🌐 Live Demo
+
+**Access SkinGuard AI**: [https://skin-guard-ai.vercel.app](https://skin-guard-ai.vercel.app)
+
+The application is deployed on Vercel, providing secure and reliable access to the dermatoscopic analysis tool for medical professionals worldwide.
+
 ## 🏥 Clinical Focus
 
 **IMPORTANT**: This tool is designed exclusively for professional dermatoscopic images captured in clinical settings. It is intended for use by qualified medical professionals only and should not be used with consumer smartphone photography.
@@ -22,6 +28,7 @@ SkinGuard AI leverages deep learning to assist medical professionals in analyzin
 - **Image Quality Validation**: Automatic assessment of image resolution and clinical standards
 - **Confidence Scoring**: Detailed probability analysis with model confidence metrics
 - **Professional Interface**: Clean, medical-professional focused user experience
+- **Global Accessibility**: Web-based platform accessible to medical professionals worldwide
 
 ## 🔬 Technical Foundation
 
@@ -61,6 +68,12 @@ SkinGuard AI leverages deep learning to assist medical professionals in analyzin
 - **Transfer Learning**: Pre-trained on ImageNet, fine-tuned on medical data
 - **Focal Loss**: Advanced loss function for medical image classification
 - **Class Balancing**: Specialized techniques for imbalanced medical datasets
+
+### Deployment
+- **Frontend**: Vercel (Next.js deployment platform)
+- **Performance**: Global CDN with optimized loading
+- **Security**: HTTPS encryption and secure data handling
+- **Scalability**: Auto-scaling infrastructure for clinical workloads
 
 ## 🔬 Clinical Usage
 
