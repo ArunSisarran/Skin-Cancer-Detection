@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Upload, Camera, AlertTriangle, Loader2, Info, Activity, CheckCircle, Stethoscope } from 'lucide-react';
+import { Upload, Camera, AlertTriangle, Info, Activity, CheckCircle, Stethoscope } from 'lucide-react';
 import './HomePage.css';
 
 const HomePage = () => {
@@ -31,51 +31,13 @@ const HomePage = () => {
     }
   };
 
-  const validateImageQuality = (file) => {
-    return new Promise((resolve) => {
-      const img = new Image();
-      img.onload = () => {
-        const width = img.width;
-        const height = img.height;
-        const minResolution = 224; // Minimum for model input
-        const recommendedResolution = 600;
-        
-        if (width < minResolution || height < minResolution) {
-          resolve({
-            valid: false,
-            message: `Image resolution too low (${width}x${height}). Minimum required: ${minResolution}x${minResolution}px for clinical analysis.`
-          });
-        } else if (width < recommendedResolution || height < recommendedResolution) {
-          resolve({
-            valid: true,
-            warning: `Image resolution (${width}x${height}) is below recommended ${recommendedResolution}x${recommendedResolution}px for optimal clinical analysis.`
-          });
-        } else {
-          resolve({ valid: true });
-        }
-      };
-      img.src = URL.createObjectURL(file);
-    });
-  };
-
-  const handleFileSelect = async (file) => {
+  const handleFileSelect = (file) => {
     if (file && file.type.startsWith('image/')) {
-      const validation = await validateImageQuality(file);
-      
-      if (!validation.valid) {
-        setError(validation.message);
-        return;
-      }
-      
       setSelectedFile(file);
       setPrediction(null);
       setError(null);
-      
-      if (validation.warning) {
-        setError(validation.warning);
-      }
     } else {
-      setError('Please select a valid dermatoscopic image file (JPEG, PNG, etc.)');
+      setError('Please select a valid image file');
     }
   };
 
@@ -101,7 +63,7 @@ const HomePage = () => {
       });
 
       if (!response.ok) {
-        throw new Error('Analysis failed. Please ensure image meets clinical standards and try again.');
+        throw new Error('Analysis failed. Please try again.');
       }
 
       const result = await response.json();
